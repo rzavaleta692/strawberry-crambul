@@ -1,48 +1,15 @@
-[gd_resource type="Theme" load_steps=22 format=3 uid="uid://pixel_theme"]
+[gd_resource type="Theme" format=3 uid="uid://cpl53560j6m3y"]
 
-[ext_resource type="Texture2D" path="res://assets/sprites/ui/button_normal.png" id="1_button_normal"]
-[ext_resource type="Texture2D" path="res://assets/sprites/ui/button_hover.png" id="2_button_hover"]
-[ext_resource type="Texture2D" path="res://assets/sprites/ui/button_pressed.png" id="3_button_pressed"]
-[ext_resource type="Texture2D" path="res://assets/sprites/ui/button_disabled.png" id="4_button_disabled"]
-[ext_resource type="Texture2D" path="res://assets/sprites/ui/button_focus.png" id="5_button_focus"]
-[ext_resource type="Texture2D" path="res://assets/sprites/ui/panel.png" id="6_panel"]
-[ext_resource type="Texture2D" path="res://assets/sprites/ui/pill_normal.png" id="7_pill_normal"]
-[ext_resource type="Texture2D" path="res://assets/sprites/ui/pill_hover.png" id="8_pill_hover"]
-[ext_resource type="Texture2D" path="res://assets/sprites/ui/pill_pressed.png" id="9_pill_pressed"]
-[ext_resource type="FontFile" path="res://assets/fonts/DejaVuSans-Bold.ttf" id="99_font"]
-
-[sub_resource type="StyleBoxTexture" id="Style_button_normal"]
-content_margin_left = 10.0
-content_margin_top = 6.0
-content_margin_right = 10.0
-content_margin_bottom = 8.0
-texture = ExtResource("1_button_normal")
-texture_margin_left = 8.0
-texture_margin_top = 8.0
-texture_margin_right = 8.0
-texture_margin_bottom = 8.0
-
-[sub_resource type="StyleBoxTexture" id="Style_button_hover"]
-content_margin_left = 10.0
-content_margin_top = 6.0
-content_margin_right = 10.0
-content_margin_bottom = 8.0
-texture = ExtResource("2_button_hover")
-texture_margin_left = 8.0
-texture_margin_top = 8.0
-texture_margin_right = 8.0
-texture_margin_bottom = 8.0
-
-[sub_resource type="StyleBoxTexture" id="Style_button_pressed"]
-content_margin_left = 10.0
-content_margin_top = 8.0
-content_margin_right = 10.0
-content_margin_bottom = 6.0
-texture = ExtResource("3_button_pressed")
-texture_margin_left = 8.0
-texture_margin_top = 8.0
-texture_margin_right = 8.0
-texture_margin_bottom = 8.0
+[ext_resource type="Texture2D" uid="uid://uhef5bjut6q1" path="res://assets/sprites/ui/button_normal.png" id="1_button_normal"]
+[ext_resource type="Texture2D" uid="uid://c7u8hb1fygm58" path="res://assets/sprites/ui/button_hover.png" id="2_button_hover"]
+[ext_resource type="Texture2D" uid="uid://cbgtnqcbbcgtd" path="res://assets/sprites/ui/button_pressed.png" id="3_button_pressed"]
+[ext_resource type="Texture2D" uid="uid://c88htl1eqh058" path="res://assets/sprites/ui/button_disabled.png" id="4_button_disabled"]
+[ext_resource type="Texture2D" uid="uid://cehhmr3yblerx" path="res://assets/sprites/ui/button_focus.png" id="5_button_focus"]
+[ext_resource type="Texture2D" uid="uid://bdr0ofoyd1lqt" path="res://assets/sprites/ui/panel.png" id="6_panel"]
+[ext_resource type="Texture2D" uid="uid://d2nxieoyes86h" path="res://assets/sprites/ui/pill_normal.png" id="7_pill_normal"]
+[ext_resource type="Texture2D" uid="uid://b22fwokig3j7w" path="res://assets/sprites/ui/pill_hover.png" id="8_pill_hover"]
+[ext_resource type="Texture2D" uid="uid://bwt8ocae1g7d6" path="res://assets/sprites/ui/pill_pressed.png" id="9_pill_pressed"]
+[ext_resource type="FontFile" uid="uid://c81fkfmgpj8d0" path="res://assets/fonts/DejaVuSans-Bold.ttf" id="99_font"]
 
 [sub_resource type="StyleBoxTexture" id="Style_button_disabled"]
 content_margin_left = 10.0
@@ -66,6 +33,45 @@ texture_margin_top = 8.0
 texture_margin_right = 8.0
 texture_margin_bottom = 8.0
 
+[sub_resource type="StyleBoxTexture" id="Style_button_hover"]
+content_margin_left = 10.0
+content_margin_top = 6.0
+content_margin_right = 10.0
+content_margin_bottom = 8.0
+texture = ExtResource("2_button_hover")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="Style_button_normal"]
+content_margin_left = 10.0
+content_margin_top = 6.0
+content_margin_right = 10.0
+content_margin_bottom = 8.0
+texture = ExtResource("1_button_normal")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="Style_button_pressed"]
+content_margin_left = 10.0
+content_margin_top = 8.0
+content_margin_right = 10.0
+content_margin_bottom = 6.0
+texture = ExtResource("3_button_pressed")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxEmpty" id="Style_empty"]
+content_margin_left = 8.0
+content_margin_top = 2.0
+content_margin_right = 8.0
+content_margin_bottom = 2.0
+
 [sub_resource type="StyleBoxTexture" id="Style_panel"]
 content_margin_left = 12.0
 content_margin_top = 12.0
@@ -77,23 +83,23 @@ texture_margin_top = 8.0
 texture_margin_right = 8.0
 texture_margin_bottom = 8.0
 
-[sub_resource type="StyleBoxTexture" id="Style_pill_normal"]
-content_margin_left = 8.0
-content_margin_top = 2.0
-content_margin_right = 8.0
-content_margin_bottom = 4.0
-texture = ExtResource("7_pill_normal")
-texture_margin_left = 6.0
-texture_margin_top = 6.0
-texture_margin_right = 6.0
-texture_margin_bottom = 6.0
-
 [sub_resource type="StyleBoxTexture" id="Style_pill_hover"]
 content_margin_left = 8.0
 content_margin_top = 2.0
 content_margin_right = 8.0
 content_margin_bottom = 4.0
 texture = ExtResource("8_pill_hover")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id="Style_pill_normal"]
+content_margin_left = 8.0
+content_margin_top = 2.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+texture = ExtResource("7_pill_normal")
 texture_margin_left = 6.0
 texture_margin_top = 6.0
 texture_margin_right = 6.0
@@ -110,49 +116,43 @@ texture_margin_top = 6.0
 texture_margin_right = 6.0
 texture_margin_bottom = 6.0
 
-[sub_resource type="StyleBoxEmpty" id="Style_empty"]
-content_margin_left = 8.0
-content_margin_top = 2.0
-content_margin_right = 8.0
-content_margin_bottom = 2.0
-
 [resource]
 default_font = ExtResource("99_font")
 default_font_size = 16
 Button/colors/font_color = Color(0.45, 0.12, 0.28, 1)
-Button/colors/font_hover_color = Color(1, 1, 1, 1)
-Button/colors/font_pressed_color = Color(1, 0.92, 0.95, 1)
-Button/colors/font_focus_color = Color(0.45, 0.12, 0.28, 1)
-Button/colors/font_hover_pressed_color = Color(1, 0.92, 0.95, 1)
 Button/colors/font_disabled_color = Color(0.78, 0.7, 0.76, 1)
-Button/styles/normal = SubResource("Style_button_normal")
-Button/styles/hover = SubResource("Style_button_hover")
-Button/styles/pressed = SubResource("Style_button_pressed")
+Button/colors/font_focus_color = Color(0.45, 0.12, 0.28, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_pressed_color = Color(1, 0.92, 0.95, 1)
+Button/colors/font_pressed_color = Color(1, 0.92, 0.95, 1)
 Button/styles/disabled = SubResource("Style_button_disabled")
 Button/styles/focus = SubResource("Style_button_focus")
+Button/styles/hover = SubResource("Style_button_hover")
+Button/styles/normal = SubResource("Style_button_normal")
+Button/styles/pressed = SubResource("Style_button_pressed")
 Label/colors/font_color = Color(1, 0.97, 0.92, 1)
 Label/colors/font_outline_color = Color(0.45, 0.12, 0.28, 1)
 Label/constants/outline_size = 0
 LetterButton/base_type = &"Button"
 LetterButton/colors/font_color = Color(1, 1, 1, 1)
-LetterButton/colors/font_hover_color = Color(1, 0.95, 0.55, 1)
 LetterButton/colors/font_focus_color = Color(1, 0.95, 0.55, 1)
-LetterButton/colors/font_pressed_color = Color(1, 0.85, 0.3, 1)
+LetterButton/colors/font_hover_color = Color(1, 0.95, 0.55, 1)
 LetterButton/colors/font_outline_color = Color(0.84, 0.38, 0.55, 1)
+LetterButton/colors/font_pressed_color = Color(1, 0.85, 0.3, 1)
 LetterButton/constants/outline_size = 6
 LetterButton/font_sizes/font_size = 18
-LetterButton/styles/normal = SubResource("Style_empty")
-LetterButton/styles/hover = SubResource("Style_empty")
-LetterButton/styles/pressed = SubResource("Style_empty")
 LetterButton/styles/focus = SubResource("Style_empty")
+LetterButton/styles/hover = SubResource("Style_empty")
+LetterButton/styles/normal = SubResource("Style_empty")
+LetterButton/styles/pressed = SubResource("Style_empty")
 PanelContainer/styles/panel = SubResource("Style_panel")
 PillButton/base_type = &"Button"
 PillButton/colors/font_color = Color(1, 1, 1, 1)
-PillButton/colors/font_hover_color = Color(1, 1, 1, 1)
 PillButton/colors/font_focus_color = Color(1, 1, 1, 1)
+PillButton/colors/font_hover_color = Color(1, 1, 1, 1)
 PillButton/colors/font_pressed_color = Color(1, 0.9, 0.95, 1)
 PillButton/font_sizes/font_size = 14
-PillButton/styles/normal = SubResource("Style_pill_normal")
-PillButton/styles/hover = SubResource("Style_pill_hover")
-PillButton/styles/pressed = SubResource("Style_pill_pressed")
 PillButton/styles/focus = SubResource("Style_button_focus")
+PillButton/styles/hover = SubResource("Style_pill_hover")
+PillButton/styles/normal = SubResource("Style_pill_normal")
+PillButton/styles/pressed = SubResource("Style_pill_pressed")

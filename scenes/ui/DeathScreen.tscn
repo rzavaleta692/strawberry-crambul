@@ -1,22 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://death_screen"]
+[gd_scene format=3 uid="uid://cxfe1ep8f15bq"]
 
-[ext_resource type="Script" path="res://scripts/DeathScreen.gd" id="1_death"]
+[ext_resource type="Script" uid="uid://dlp523b56xxr3" path="res://scripts/DeathScreen.gd" id="1_death"]
 
-[node name="DeathScreen" type="Control"]
+[node name="DeathScreen" type="Control" unique_id=1485179302]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_death")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=604667844]
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 360.0
 mouse_filter = 2
 color = Color(0.03, 0, 0.02, 1)
 
-[node name="Body" type="TextureRect" parent="."]
+[node name="Body" type="TextureRect" parent="." unique_id=317806130]
 layout_mode = 0
 offset_left = 224.0
 offset_top = 28.0
@@ -26,14 +28,14 @@ mouse_filter = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Flash" type="ColorRect" parent="."]
+[node name="Flash" type="ColorRect" parent="." unique_id=1767690965]
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 360.0
 mouse_filter = 2
 color = Color(1, 0, 0, 0)
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=465044263]
 layout_mode = 0
 offset_top = 272.0
 offset_right = 640.0
@@ -46,7 +48,7 @@ text = "Has muerto."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=714864350]
 wait_time = 3.5
 one_shot = true
 

@@ -18,7 +18,7 @@ signal lives_changed(current: int)
 const GRAVITY := 1960.0
 const INVULNERABLE_TIME := 1.5
 
-enum Frame { IDLE, RUN_A, RUN_B, JUMP, GLIDE, DEAD }
+enum Frame { IDLE_A, IDLE_B, RUN_A, RUN_B, RUN_C, JUMP, GLIDE, FALL, LAND, DEAD }
 
 var lives := 3
 var is_gliding := false
@@ -28,7 +28,10 @@ var controls_enabled := true
 var invulnerable := false
 var dying := false
 var hud: Node = null
+var _land_timer := 0.0
+const LAND_DURATION := 0.12
 var _anim_time := 0.0
+
 
 @onready var sprite: Sprite2D = $Sprite2D
 
@@ -69,26 +72,38 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("move_left", "move_right") if controls_enabled else 0.0
 	velocity.x = direction * speed
 
+	var was_on_floor := is_on_floor()
+
 	move_and_slide()
+
+	if not was_on_floor and is_on_floor():
+		_land_timer = LAND_DURATION
+
 	_animate(delta, direction)
 
 	if global_position.y > fall_limit:
-		# Cayó al abismo: pierde una vida aunque sea invulnerable
 		take_damage(true)
 
 func _animate(delta: float, direction: float) -> void:
 	if direction != 0:
 		sprite.flip_h = direction < 0
-	if is_gliding:
+
+	if _land_timer > 0.0:
+		_land_timer -= delta
+		sprite.frame = Frame.LAND
+	elif is_gliding:
 		sprite.frame = Frame.GLIDE
 	elif not is_on_floor():
-		sprite.frame = Frame.JUMP
+		sprite.frame = Frame.JUMP if velocity.y < 0 else Frame.FALL
 	elif direction != 0:
 		_anim_time += delta
-		sprite.frame = Frame.RUN_A if int(_anim_time * 8) % 2 == 0 else Frame.RUN_B
+		# Ciclo de 3 frames de caminata, ~8 fps
+		var step := int(_anim_time * 8) % 3
+		sprite.frame = [Frame.RUN_A, Frame.RUN_B, Frame.RUN_C][step]
 	else:
-		_anim_time = 0.0
-		sprite.frame = Frame.IDLE
+		_anim_time += delta
+		# Respiración: 2 frames, ~2 fps (lento)
+		sprite.frame = Frame.IDLE_A if int(_anim_time * 2) % 2 == 0 else Frame.IDLE_B
 
 func take_damage(ignore_invulnerability := false) -> void:
 	if dying or (invulnerable and not ignore_invulnerability):
