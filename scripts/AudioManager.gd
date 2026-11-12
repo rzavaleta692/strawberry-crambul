@@ -23,6 +23,9 @@ const SFX := {
 	"death": "res://assets/audio/sfx/death.wav",
 	"jumpscare": "res://assets/audio/sfx/jumpscare.wav",
 	"bridge": "res://assets/audio/sfx/bridge.wav",
+	"stomp": "res://assets/audio/sfx/stomp.wav",
+	"spit": "res://assets/audio/sfx/spit.wav",
+	"leap": "res://assets/audio/sfx/leap.wav",
 }
 
 var music_on := true

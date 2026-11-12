@@ -1,15 +1,19 @@
 extends Area2D
 # Planta lanzadora — se queda en su lugar y escupe semillas hacia el jugador
-# cuando lo tiene cerca. Tocarla también quita una vida.
+# cuando lo tiene cerca. Antes de disparar parpadea para avisar.
+# Tocarla también quita una vida.
 
 @export var seed_scene: PackedScene
 @export var fire_interval := 2.2
 ## Distancia a la que empieza a disparar
 @export var detect_range := 300.0
 @export var seed_speed := 170.0
+## Segundos que parpadea antes de cada disparo
+@export var warn_time := 0.5
 
 var player: Node2D = null
 var _cooldown := 1.0
+var _warning := -1.0
 
 @onready var sprite: Sprite2D = $Sprite2D
 
@@ -23,18 +27,31 @@ func _physics_process(delta: float) -> void:
 	if player == null or not is_instance_valid(player):
 		return
 	var to_player := player.global_position - global_position
+	var in_range: bool = abs(to_player.x) < detect_range and abs(to_player.y) < 160.0
 	sprite.flip_h = to_player.x < 0
 	_cooldown -= delta
-	if _cooldown > 0.6:
+	if _cooldown < fire_interval - 0.4:
 		sprite.frame = 0
-	if _cooldown <= 0.0 and abs(to_player.x) < detect_range and abs(to_player.y) < 160.0:
-		_shoot(sign(to_player.x))
-		_cooldown = fire_interval
+
+	if _warning < 0.0 and _cooldown <= 0.0 and in_range:
+		_warning = warn_time
+	if _warning >= 0.0:
+		_warning -= delta
+		# Parpadeo y se infla un poco: va a disparar
+		var blink := int(_warning * 16) % 2 == 0
+		sprite.modulate = Color(1.8, 1.8, 1.8) if blink else Color(1, 1, 1)
+		sprite.scale = Vector2(1.0, 1.0 + 0.12 * (1.0 - _warning / warn_time))
+		if _warning < 0.0:
+			sprite.modulate = Color(1, 1, 1)
+			sprite.scale = Vector2.ONE
+			_shoot(sign(to_player.x))
+			_cooldown = fire_interval
 
 func _shoot(dir: float) -> void:
 	if seed_scene == null:
 		return
 	sprite.frame = 1
+	AudioManager.play_sfx("spit")
 	var s: Area2D = seed_scene.instantiate()
 	s.direction = Vector2(dir, 0)
 	s.speed = seed_speed

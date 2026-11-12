@@ -3,7 +3,7 @@ extends Control
 # Los personajes muertos ya no se pueden elegir: solo se ve su cuerpo y su hoja.
 
 const FRAME_IDLE := 0
-const FRAME_DEAD := 5
+const FRAME_WIDTH := 48
 const HEART_FULL := preload("res://assets/sprites/ui/heart_full.png")
 const HEART_EMPTY := preload("res://assets/sprites/ui/heart_empty.png")
 
@@ -95,7 +95,10 @@ func _show_hearts(card: Control, id: String, dead: bool) -> void:
 func _portrait(id: String, dead: bool) -> AtlasTexture:
 	var tex := AtlasTexture.new()
 	tex.atlas = load(CHARACTERS[id]["sheet"])
-	tex.region = Rect2((FRAME_DEAD if dead else FRAME_IDLE) * 48, 0, 48, 64)
+	# El cuadro de muerto es siempre el último de la hoja (Personaje 1 tiene
+	# 10 cuadros y los demás 6), así no se rompe si cambia el número de cuadros
+	var last_frame: int = tex.atlas.get_width() / FRAME_WIDTH - 1
+	tex.region = Rect2((last_frame if dead else FRAME_IDLE) * FRAME_WIDTH, 0, FRAME_WIDTH, 64)
 	return tex
 
 func _on_play_pressed(id: String) -> void:

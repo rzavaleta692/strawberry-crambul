@@ -263,7 +263,7 @@ func _build_entities() -> void:
 
 	var signs := [
 		[6, 17, "← → / A D : moverse"],
-		[12, 17, "ESPACIO : saltar"],
+		[12, 17, "ESPACIO : saltar\nSalta encima de las babosas"],
 		[25, 17, "Mantén ESPACIO en el aire\npara abrir el paraguas"],
 		[42.5, 17, "¡Cuidado con las trampas!"],
 	]
@@ -318,7 +318,7 @@ func _build_enemies() -> void:
 		["CrowEnemy", 36, 14.4, {"flight_range": 110.0}],
 		["SlimeEnemy", 70, 8, {"start_direction": -1}],
 		["PlantEnemy", 78.5, 8, {}],
-		["JumperEnemy", 87, 21.25, {"jump_speed": 1020.0, "start_delay": 1.4}],
+		["JumperEnemy", 87, 21.25, {"jump_speed": 1020.0, "start_delay": 1.4, "warn_height": 360.0}],
 		["CrowEnemy", 99, 7.2, {"flight_range": 90.0, "start_direction": 1}],
 		["PlantEnemy", 102.5, 8, {}],
 	]
