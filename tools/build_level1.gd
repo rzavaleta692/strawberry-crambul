@@ -41,6 +41,7 @@ func _initialize() -> void:
 	_build_ground(tileset)
 	_build_hidden_cave(tileset)
 	_build_entities()
+	_build_enemies()
 	_build_triggers()
 
 	var hud: Node = load("res://scenes/ui/HUD.tscn").instantiate(PackedScene.GEN_EDIT_STATE_INSTANCE)
@@ -306,6 +307,32 @@ func _build_entities() -> void:
 		m.name = "GhostSpawn%d" % (i + 1)
 		m.position = _tile_pos(ghost_pos[i][0], ghost_pos[i][1])
 		_add(ghosts, m)
+
+func _build_enemies() -> void:
+	# (escena, x en tiles, y en tiles, propiedades)
+	# Babosas y plantas se paran sobre la fila indicada; los saltarines
+	# esperan escondidos debajo del hueco (fuera de la cámara).
+	var enemies := [
+		["SlimeEnemy", 9, 17, {"start_direction": 1}],
+		["JumperEnemy", 21.5, 21.25, {"start_delay": 0.8}],
+		["CrowEnemy", 36, 14.4, {"flight_range": 110.0}],
+		["SlimeEnemy", 70, 8, {"start_direction": -1}],
+		["PlantEnemy", 78.5, 8, {}],
+		["JumperEnemy", 87, 21.25, {"jump_speed": 1020.0, "start_delay": 1.4}],
+		["CrowEnemy", 99, 7.2, {"flight_range": 90.0, "start_direction": 1}],
+		["PlantEnemy", 102.5, 8, {}],
+	]
+	var group := _group("Enemies")
+	var counts := {}
+	for e in enemies:
+		var scene: PackedScene = load("res://scenes/entities/%s.tscn" % e[0])
+		var node: Node2D = scene.instantiate(PackedScene.GEN_EDIT_STATE_INSTANCE)
+		counts[e[0]] = counts.get(e[0], 0) + 1
+		node.name = "%s%d" % [e[0], counts[e[0]]]
+		node.position = _tile_pos(e[1], e[2])
+		for prop in e[3]:
+			node.set(prop, e[3][prop])
+		_add(group, node)
 
 func _build_triggers() -> void:
 	var trigger := _area("BridgeTrigger", Rect2(_tile_pos(115, 2), Vector2(3 * T, 4 * T)))

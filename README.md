@@ -3,6 +3,9 @@
 Videojuego híbrido (plataformas + shooter + terror) con pixel art estilo Mario Bros.  
 Desarrollado en **Godot 4.7** con **GDScript**.
 
+¿Quieres cambiar algo y no sabes dónde? Revisa la
+[documentación técnica](docs/DOCUMENTACION_TECNICA.md).
+
 ## Estructura del proyecto
 
 ```
