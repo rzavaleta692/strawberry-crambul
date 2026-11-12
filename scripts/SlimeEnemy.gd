@@ -48,7 +48,7 @@ func _on_hit(body: Node) -> void:
 func _squash(player: Node) -> void:
 	dead = true
 	player.velocity.y = stomp_bounce
-	AudioManager.play_sfx("jump", -2.0, 0.7)
+	AudioManager.play_sfx("stomp")
 	hit_area.set_deferred("monitoring", false)
 	collision_layer = 0
 	var tween := create_tween()

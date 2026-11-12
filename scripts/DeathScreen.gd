@@ -48,8 +48,9 @@ func _ready() -> void:
 	timer.start(3.5)
 
 func _show_body(tex: AtlasTexture) -> void:
-	# El cuerpo queda tirado en el suelo
-	tex.region = Rect2(5 * 48, 0, 48, 64)
+	# El cuerpo queda tirado en el suelo (último cuadro de la hoja)
+	var last_frame: int = tex.atlas.get_width() / 48 - 1
+	tex.region = Rect2(last_frame * 48, 0, 48, 64)
 	body.scale = Vector2.ONE
 	body.modulate = Color(1, 1, 1)
 	label.visible = true

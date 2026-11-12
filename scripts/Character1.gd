@@ -34,6 +34,9 @@ var _anim_time := 0.0
 
 
 @onready var sprite: Sprite2D = $Sprite2D
+# Posición X del sprite mirando a la derecha; se refleja al voltear para que
+# el dibujo no se desfase de la caja de colisión
+@onready var _sprite_x := sprite.position.x
 
 func _ready() -> void:
 	add_to_group("player")
@@ -87,6 +90,7 @@ func _physics_process(delta: float) -> void:
 func _animate(delta: float, direction: float) -> void:
 	if direction != 0:
 		sprite.flip_h = direction < 0
+		sprite.position.x = -_sprite_x if sprite.flip_h else _sprite_x
 
 	if _land_timer > 0.0:
 		_land_timer -= delta
@@ -115,11 +119,28 @@ func take_damage(ignore_invulnerability := false) -> void:
 		GameData.set_lives(character_id, lives)
 	if hud:
 		hud.update_lives(lives)
+	_shake_camera()
 	if lives <= 0:
 		_die()
 	else:
 		AudioManager.play_sfx("hurt")
 		_respawn()
+
+func _shake_camera(strength := 5, duration := 0.3) -> void:
+	# Pequeño temblor de pantalla al recibir daño
+	var cam: Camera2D = null
+	for child in get_children():
+		if child is Camera2D:
+			cam = child
+	if cam == null:
+		return
+	var base := cam.offset
+	var steps := 6
+	var tween := create_tween()
+	for i in steps:
+		var jolt := Vector2(randi_range(-strength, strength), randi_range(-strength, strength))
+		tween.tween_property(cam, "offset", base + jolt, duration / (steps + 1))
+	tween.tween_property(cam, "offset", base, duration / (steps + 1))
 
 func _respawn() -> void:
 	global_position = respawn_point
