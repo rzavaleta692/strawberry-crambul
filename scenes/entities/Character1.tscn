@@ -4,13 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://dav6xnfo8v4g" path="res://assets/sprites/characters/character1.png" id="2_tex"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
-size = Vector2(25, 58)
+size = Vector2(23, 59)
 
 [node name="Character1" type="CharacterBody2D" unique_id=1053956183]
 script = ExtResource("1_char1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2020613008]
-position = Vector2(0, -29)
+position = Vector2(5.5, -29.5)
 shape = SubResource("RectangleShape2D_1")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=69635730]
