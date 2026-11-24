@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="Strawberry Crambul"
 config/description="Videojuego híbrido plataformas + shooter + terror con pixel art."
-run/main_scene="res://scenes/ui/MainMenu.tscn"
+run/main_scene="uid://geax3cr8fku6"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
 [autoload]

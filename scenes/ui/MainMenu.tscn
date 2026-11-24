@@ -4,7 +4,42 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/MenuBackground.tscn" id="2_bg"]
 [ext_resource type="Texture2D" uid="uid://cfaetwdx4wuvf" path="res://assets/sprites/ui/menu_scene.png" id="3_scene"]
 [ext_resource type="Texture2D" uid="uid://lwyayf22wkk" path="res://assets/sprites/ui/title.png" id="4_title"]
-[ext_resource type="Texture2D" uid="uid://6a1gxny3bgmy" path="res://assets/sprites/ui/letter.png" id="5_letter"]
+
+[sub_resource type="Animation" id="Animation_2ysvc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xpiny"]
+resource_name = "fade-out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bhu4a"]
+_data = {
+&"RESET": SubResource("Animation_2ysvc"),
+&"fade-out": SubResource("Animation_xpiny")
+}
 
 [node name="MainMenu" type="Control" unique_id=1326652296]
 layout_mode = 3
@@ -27,27 +62,26 @@ texture = ExtResource("3_scene")
 
 [node name="Title" type="TextureRect" parent="." unique_id=330060093]
 layout_mode = 0
-offset_left = 130.0
-offset_top = 8.0
-offset_right = 510.0
-offset_bottom = 124.0
+offset_left = 141.0
+offset_top = 63.0
+offset_right = 521.0
+offset_bottom = 179.0
 mouse_filter = 2
 texture = ExtResource("4_title")
 
 [node name="Letter" type="TextureRect" parent="." unique_id=1040663145]
 layout_mode = 0
-offset_left = 172.0
-offset_top = 132.0
-offset_right = 440.0
-offset_bottom = 325.0
-texture = ExtResource("5_letter")
+offset_left = 197.0
+offset_top = 190.0
+offset_right = 448.0
+offset_bottom = 319.0
 
 [node name="VBox" type="VBoxContainer" parent="Letter" unique_id=425828387]
 layout_mode = 0
-offset_left = 65.0
-offset_top = 43.0
-offset_right = 240.0
-offset_bottom = 138.0
+offset_left = 47.0
+offset_top = 23.0
+offset_right = 222.0
+offset_bottom = 118.0
 theme_override_constants/separation = 0
 alignment = 1
 
@@ -118,6 +152,20 @@ offset_bottom = 300.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 6
 text = "Partida reiniciada"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=64529926]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1982737683]
+libraries/ = SubResource("AnimationLibrary_bhu4a")
+autoplay = &"fade-out"
 
 [connection signal="pressed" from="Letter/VBox/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Letter/VBox/OptionsButton" to="." method="_on_options_button_pressed"]
